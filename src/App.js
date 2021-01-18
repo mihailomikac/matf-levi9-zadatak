@@ -1,24 +1,40 @@
+import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import AddProduct from './components/AddProduct';
+import ProductList from './components/ProductList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/admin/unos-novog-proizvoda">Add product</Link>
+          </li>
+          <li>
+            <Link to="/admin/proizvodi">Products</Link>
+          </li>
+        </ul>
+      </nav>
+
+      {/* A <Switch> looks through its children <Route>s and
+          renders the first one that matches the current URL. */}
+      <Switch>
+        <Route path="/admin/unos-novog-proizvoda">
+          <AddProduct />
+        </Route>
+        <Route path="/admin/proizvodi">
+          <ProductList />
+        </Route>
+        
+      </Switch>
     </div>
+  </Router>
   );
 }
 
